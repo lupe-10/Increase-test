@@ -1,5 +1,8 @@
 class Logic < ActiveRecord::Base
 
+    
+
+    def parsing
     response = Faraday.get('https://increase-transactions.herokuapp.com/file.txt') do |req|
         req.headers['Authorization'] = 'Bearer 1234567890qwertyuiopasdfghjklzxcvbnm'
       end
@@ -48,5 +51,5 @@ class Logic < ActiveRecord::Base
           Discount.create(discount_args)
         end
       end
-
+    end
 end

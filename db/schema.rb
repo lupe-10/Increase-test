@@ -18,11 +18,11 @@ ActiveRecord::Schema.define(version: 2021_08_25_141554) do
   create_table "discounts", force: :cascade do |t|
     t.string "id_discount"
     t.integer "amount"
-    t.bigint "payments_id"
+    t.bigint "payment_id"
     t.integer "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["payments_id"], name: "index_discounts_on_payments_id"
+    t.index ["payment_id"], name: "index_discounts_on_payment_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -31,20 +31,20 @@ ActiveRecord::Schema.define(version: 2021_08_25_141554) do
     t.integer "total_amount"
     t.integer "total_discount"
     t.integer "total_with_discount"
-    t.bigint "users_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_payments_on_users_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
     t.string "id_transaction"
     t.integer "amount"
     t.integer "type"
-    t.bigint "payments_id"
+    t.bigint "payment_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["payments_id"], name: "index_transactions_on_payments_id"
+    t.index ["payment_id"], name: "index_transactions_on_payment_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_08_25_141554) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "discounts", "payments", column: "payments_id"
-  add_foreign_key "payments", "users", column: "users_id"
-  add_foreign_key "transactions", "payments", column: "payments_id"
+  add_foreign_key "discounts", "payments"
+  add_foreign_key "payments", "users"
+  add_foreign_key "transactions", "payments"
 end

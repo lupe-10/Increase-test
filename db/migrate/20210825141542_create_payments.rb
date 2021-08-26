@@ -6,7 +6,7 @@ class CreatePayments < ActiveRecord::Migration[6.0]
       t.integer :total_amount
       t.integer :total_discount
       t.integer :total_with_discount
-      t.references :users, foreign_key: true
+      t.references :user, foreign_key: true
       t.timestamps
     end
   end
