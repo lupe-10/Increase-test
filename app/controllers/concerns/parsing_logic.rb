@@ -1,6 +1,6 @@
-class Logic < ActiveRecord::Base
 
-    
+module ParsingLogic
+  extend ActiveSupport::Concern
 
     def parsing
     response = Faraday.get('https://increase-transactions.herokuapp.com/file.txt') do |req|
